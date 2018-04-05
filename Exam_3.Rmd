@@ -1,0 +1,99 @@
+---
+title: "Exam 3"
+author: "Sydney Houghton"
+date: "4/5/2018"
+output: html_document
+---
+```{r include=FALSE}
+library(ShortRead)
+library(tidyr)
+library(stringr)
+library(msa)
+library(seqinr)
+library(Rcpp)
+library(dada2)
+library(vegan)
+```
+
+### Part 1
+
+
+#### 1. Convert fastq reads to fasta reads
+
+```{r}
+setwd("/Users/sydneyhoughton/Desktop/Data_Course/Exam3/")
+list.files()
+fq.files = dir(path = getwd(), full.names = TRUE, pattern = ".fastq")
+fq.files
+
+seq1 = readFastq(fq.files[1])
+seq2 = readFastq(fq.files[2])
+writeFasta(seq1,"Sample1.fasta")
+writeFasta(seq2,"Sample2.fasta")
+
+list.files()
+```
+
+
+#### 2. Counting the number of DNA reads detected in each sample
+##### Bash command used to detect number of DNA reads in each file
+grep -c "^>" *.fasta
+
+* Counts
+  + Sample1.fasta:6577
+  + Sample2.fasta:7731
+
+
+#### 3. Trimming the original fastq files so that only the first 100 bases are included from each DNA read within
+
+```{r echo=TRUE}
+dir.create(file.path(getwd(), "filtered"))
+```
+
+```{r}
+filt.files = dir(path = getwd(), full.names = FALSE, pattern = ".fastq")
+for(i in filt.files){
+  fastqFilter(fn = i,fout = paste0(getwd(),"/filtered/",i,".filt"),
+              truncLen = 100)
+}
+```
+
+
+#### 4. Save trimmed fastq files as "Sample1.fastq.trim" and "Sample2.fastq.trim"
+##### I could not get this to work. I am sure it is a very simple line of code that I am forgetting. 
+
+
+
+### Task 2
+
+#### 1. Import files
+```{r}
+otu = read.csv("exam3_otu_table.csv", row.names = 1)
+meta = read.csv("exam3_metadata.csv")
+```
+
+
+
+#### 2. Subset both objects to include only samples where SampleType is either "Soil" or "rhizosphere"
+##### Having trouble with this because I am unsure how to work with the out_table since it does not include the SampleType. Some of the code I tried is shown below. 
+```{r}
+names(otu)
+conling = otu$Consensus.lineage
+otu$Consensus.lineage = NULL
+t_otu = as.data.frame(t(otu))
+
+levels(meta$SampleType)
+meta$SampleType 
+identical(row.names(t_otu), as.character(meta$SampleType))
+
+```
+##### Identical code results in "FALSE"", which I am unsure on how to correct this between the data tables. 
+
+
+#### 3. Perform a PermANOVA to determine whether there are significant differences in bacterial community composistion between these two sample types
+```{r}
+adonis(t_otu ~ meta$SampleType)
+```
+
+#### 4. Determine which bacterial genus is the most abundant for each of those sample types as a whole
+
