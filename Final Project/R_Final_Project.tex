@@ -1,0 +1,309 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Seed Pod Wind Dispersal of Holmgren's Milk-vetch, Astragalus holmgreniorum},
+            pdfauthor={Sydney Houghton},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+  \title{Seed Pod Wind Dispersal of Holmgren's Milk-vetch, Astragalus
+holmgreniorum}
+  \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+  \author{Sydney Houghton}
+  \preauthor{\centering\large\emph}
+  \postauthor{\par}
+  \predate{\centering\large\emph}
+  \postdate{\par}
+  \date{4/25/2018}
+
+
+\begin{document}
+\maketitle
+
+Astragalus holmgreniorum is a federally listed endangered endemic
+perennial herb of the Northern Mojave Desert near St.~George, UT.
+Conservation efforts are in motion to take collected seeds and disperse
+them into suitable habitat further from current threats. The
+morphological characteristics of the legume pods exhibit aerodynamic
+qualities after detaching from the mother plant. This study was
+performed to determine if wind dispersal is possible and if substrate,
+slope, or speed of wind have an affect. A runway was designed with
+different substrates: sand, small gravel, and medium gravel. Three
+degrees of slope were tested: no slope, upslope and downslope. Three
+speeds of wind (4.3 m/s, 7.1 m/s, 10.7 m/s) were provided by a fan to
+mimic habitat and environmental conditions in a controlled laboratory
+setting. For each treatment combination a new group of pods was tested
+totaling 324 individuals each trialed at two orientations to the wind.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{setwd}\NormalTok{(}\StringTok{"/Users/sydneyhoughton/Desktop/Astragalus holmgreniorum /Wind Dispersal study/"}\NormalTok{)}
+\KeywordTok{list.files}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "~$A_2018_abstract.docx"                            
+##  [2] "~$tSoc_2018_SAC.docx"                              
+##  [3] "~$Wind_dispersal_study_data.xlsx"                  
+##  [4] "Astragalus holmgreniorum Seed Dispersal Study.docx"
+##  [5] "Barneby;\tNaming Holmgren.pdf"                     
+##  [6] "BotSoc_2018_SAC.docx"                              
+##  [7] "BSA_2018_abstract.docx"                            
+##  [8] "Combined_data.csv"                                 
+##  [9] "Experimental design_A.holmgreniorum.docx"          
+## [10] "FINAL_BSA_2018_abstract.docx"                      
+## [11] "graph_1.jpeg"                                      
+## [12] "Inital_24_dimensions.xlsx"                         
+## [13] "Raw_data.pdf"                                      
+## [14] "Wind_dispersal_A.holmgreniorum.R"                  
+## [15] "Wind_Dispersal_analysis.R"                         
+## [16] "Wind_dispersal_study_data.pdf"                     
+## [17] "Wind_dispersal_study_data.xlsx"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dat =}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"Combined_data.csv"}\NormalTok{)}
+
+\NormalTok{dat}\OperatorTok{$}\NormalTok{X =}\StringTok{ }\OtherTok{NULL}
+\NormalTok{dat}\OperatorTok{$}\NormalTok{distance..inches. =}\StringTok{ }\OtherTok{NULL}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{aov1 =}\StringTok{ }\KeywordTok{aov}\NormalTok{(distance..cm. }\OperatorTok{~}\StringTok{ }\NormalTok{substrate, }\DataTypeTok{data =}\NormalTok{ dat)}
+\KeywordTok{summary}\NormalTok{(aov1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              Df  Sum Sq Mean Sq F value Pr(>F)    
+## substrate     2  508798  254399   78.71 <2e-16 ***
+## Residuals   645 2084801    3232                   
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# reject NULL hypothesis, substrate matters!}
+\NormalTok{aov2 =}\StringTok{ }\KeywordTok{aov}\NormalTok{(distance..cm. }\OperatorTok{~}\StringTok{ }\NormalTok{slope, }\DataTypeTok{data =}\NormalTok{ dat)}
+\KeywordTok{summary}\NormalTok{(aov2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              Df  Sum Sq Mean Sq F value Pr(>F)  
+## slope         4   50119   12530   3.168 0.0136 *
+## Residuals   643 2543480    3956                 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# reject NULL hypothesis, slope matters!}
+\NormalTok{aov3 =}\StringTok{ }\KeywordTok{aov}\NormalTok{(distance..cm. }\OperatorTok{~}\StringTok{ }\NormalTok{orientation, }\DataTypeTok{data =}\NormalTok{ dat)}
+\KeywordTok{summary}\NormalTok{(aov3)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              Df  Sum Sq Mean Sq F value Pr(>F)
+## orientation   1    1441    1441   0.359  0.549
+## Residuals   646 2592158    4013
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# accept NULL hypothesis, oreientation does not have a significant effect}
+\NormalTok{aov4 =}\StringTok{ }\KeywordTok{aov}\NormalTok{(distance..cm. }\OperatorTok{~}\StringTok{ }\NormalTok{time.s., }\DataTypeTok{data =}\NormalTok{ dat)}
+\KeywordTok{summary}\NormalTok{(aov4)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              Df  Sum Sq Mean Sq F value Pr(>F)    
+## time.s.       1 1298416 1298416   647.6 <2e-16 ***
+## Residuals   646 1295183    2005                   
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# reject NULL hypothesis, time has significance but not sure what this means. INVESTIGATE MORE}
+\NormalTok{aov5 =}\StringTok{ }\KeywordTok{aov}\NormalTok{(distance..cm. }\OperatorTok{~}\StringTok{ }\NormalTok{initial_mass.g., }\DataTypeTok{data =}\NormalTok{ dat)}
+\KeywordTok{summary}\NormalTok{(aov5)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                  Df  Sum Sq Mean Sq F value Pr(>F)
+## initial_mass.g.   1    8999    8999   2.249  0.134
+## Residuals       646 2584600    4001
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# accept NULL hypothesis, oreientation does not have a significant effect}
+
+\NormalTok{mod1 =}\StringTok{ }\KeywordTok{aov}\NormalTok{(distance..cm. }\OperatorTok{~}\StringTok{ }\NormalTok{substrate}\OperatorTok{*}\NormalTok{slope}\OperatorTok{*}\NormalTok{time.s., }\DataTypeTok{data =}\NormalTok{ dat)}
+\KeywordTok{summary}\NormalTok{(mod1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                          Df  Sum Sq Mean Sq F value   Pr(>F)    
+## substrate                 2  508798  254399 140.600  < 2e-16 ***
+## slope                     4   46907   11727   6.481 4.09e-05 ***
+## time.s.                   1  834150  834150 461.014  < 2e-16 ***
+## substrate:slope           2    2703    1351   0.747    0.474    
+## substrate:time.s.         2   46737   23369  12.915 3.18e-06 ***
+## slope:time.s.             4   13582    3396   1.877    0.113    
+## substrate:slope:time.s.   2     810     405   0.224    0.799    
+## Residuals               630 1139911    1809                     
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Please cite as:
+\end{verbatim}
+
+\begin{verbatim}
+##  Hlavac, Marek (2018). stargazer: Well-Formatted Regression and Summary Statistics Tables.
+\end{verbatim}
+
+\begin{verbatim}
+##  R package version 5.2.1. https://CRAN.R-project.org/package=stargazer
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## =====================================
+## Statistic  N   Mean  St. Dev. Min Max
+## -------------------------------------
+## rating     30 64.633  12.173  40  85 
+## complaints 30 66.600  13.315  37  90 
+## privileges 30 53.133  12.235  30  83 
+## learning   30 56.367  11.737  34  75 
+## raises     30 64.633  10.397  43  88 
+## critical   30 74.767  9.895   49  92 
+## advance    30 42.933  10.289  25  72 
+## -------------------------------------
+\end{verbatim}
+
+
+\end{document}

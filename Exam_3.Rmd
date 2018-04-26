@@ -46,7 +46,7 @@ grep -c "^>" *.fasta
 
 #### 3. Trimming the original fastq files so that only the first 100 bases are included from each DNA read within
 
-```{r echo=TRUE}
+```{r}
 dir.create(file.path(getwd(), "filtered"))
 ```
 
@@ -68,6 +68,7 @@ for(i in filt.files){
 
 #### 1. Import files
 ```{r}
+setwd("/Users/sydneyhoughton/Desktop/Data_Course/Exam3/")
 otu = read.csv("exam3_otu_table.csv", row.names = 1)
 meta = read.csv("exam3_metadata.csv")
 ```
@@ -77,6 +78,7 @@ meta = read.csv("exam3_metadata.csv")
 #### 2. Subset both objects to include only samples where SampleType is either "Soil" or "rhizosphere"
 ##### Having trouble with this because I am unsure how to work with the out_table since it does not include the SampleType. Some of the code I tried is shown below. 
 ```{r}
+getwd
 names(otu)
 conling = otu$Consensus.lineage
 otu$Consensus.lineage = NULL
