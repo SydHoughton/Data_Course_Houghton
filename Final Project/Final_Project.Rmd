@@ -1,0 +1,130 @@
+---
+title: "Seed Pod Wind Dispersal of Holmgren’s Milk-vetch, Astragalus holmgreniorum"
+author: "Sydney Houghton"
+date: "4/26/2018"
+output: html_document
+---
+
+### Introduction
+*Astragalus holmgreniorum*, Holmgren's Milk-vetch, is an endangered endemic perennial herb of the Northern Mojave Desert near St. George, UT. Once the leguminous pods detach from the mother plant they begin to dry and dehice. At this stage the morphological characteristcs exhibit aerodynamic qualities. This study was performed to determine if wind dispersal is possible and to what distance pods potentially move.   
+
+![Attached fleshy pods. Photo credit Susan Meyer](/Users/sydneyhoughton/Desktop/attached_pods.png)   
+
+
+![Detached dehiscent pods. Photo credit Aly DeNittis](/Users/sydneyhoughton/Desktop/detached_pods.png)
+
+
+
+### Procedure
+A runway was designed with different substrates: sand, small gravel, and medium gravel. Three degrees of slope were tested: no slope, upslope and downslope. Three speeds of wind (4.3 m/s, 7.1 m/s, 10.7 m/s) were provided by a fan to mimic habitat and environmental conditions in a controlled laboratory setting. For each treatment combination a new group of pods was tested totaling 324 individuals each trialed at two orientations to the wind. Each pod was timed from the start of the fan to the first stop of movement. Pods were given an equal cut off time if no movement occured.
+
+### Data Analysis
+Of the 324 trials 89% of pods moved a distance and stopped within 15 seconds of wind exposure and 57% travled to 152.4 cm or more. Runway maximum length is 304.8 cm, roughly 3 meters.    
+The effect of wind on pod movement was evident during trials. Knowing that over 50% of our selection from the population moved a good distance in a short time is confirmation of wind as a dispersal component.  
+
+```{r time percent, echo=FALSE, message=FALSE, warning=FALSE}
+tidy_dat = read.csv("/Users/sydneyhoughton/Desktop/Astragalus holmgreniorum /Wind Dispersal study/syd2.csv")
+library(ggplot2)
+halftime = as.data.frame(which(tidy_dat[,6] < 15))
+percent1 = 288/324
+ggplot(tidy_dat, aes(x=time_s)) + geom_histogram() + stat_bin() + theme_bw() +
+  geom_vline(xintercept = 15, color = "blue" ) + xlab("time (s)") + 
+  ggtitle("89% reached distance traveled under 15 seconds")
+
+```
+
+```{r distance traveled percent, echo=FALSE, message=FALSE, warning=FALSE}
+halfway = as.data.frame(which(tidy_dat[,5] > 152.4))
+percent2 = 185/324
+ggplot(tidy_dat, aes(x= distance_cm, y= time_s)) + xlab("distance (cm)") + ylab("time (s)") + ggtitle("57% traveled past 152.4 cm") +
+  geom_count(col = "gray31") + theme_bw() + geom_vline(xintercept = 152.4, color = "red")
+
+```  
+  
+#### Inital investigation   
+Pod mass and orientation to the wind had no significant effect and the NULL hypothesis is accepted for these variables. 
+```{r message=FALSE, warning=FALSE, include=FALSE}
+setwd("/Users/sydneyhoughton/Desktop/Astragalus holmgreniorum /Wind Dispersal study/")
+list.files()
+dat = read.csv("Combined_data.csv")
+
+### tidying the data frame
+dat$X = NULL
+dat$distance..inches. = NULL
+
+### initial investigation to see any significant correlations
+aov1 = aov(distance..cm. ~ substrate, data = dat)
+summary(aov1) # p-value of <2e-16
+TukeyHSD(aov1) # all substrates are confirmed to have difference.
+# reject NULL hypothesis, substrate matters!
+
+aov2 = aov(distance..cm. ~ slope, data = dat)
+summary(aov2) # p-value of 0.0136
+TukeyHSD(aov2) # up-down are confirmed to have some difference but not by much. 
+# reject NULL hypothesis, slope matters!
+
+aov3 = aov(distance..cm. ~ orientation, data = dat)
+summary(aov3) # p-value of 0.549
+TukeyHSD(aov3) # oreientation confirmed to have no difference. 
+# accept NULL hypothesis, oreientation does not have a significant effect
+
+aov4 = aov(distance..cm. ~ time.s., data = dat)
+summary(aov4) # p-value of <2e-16
+# reject NULL hypothesis, time has significance but not sure what this means. INVESTIGATE MORE
+
+aov5 = aov(distance..cm. ~ initial_mass.g., data = dat)
+summary(aov5) # p-value of 0.134
+# accept NULL hypothesis, oreientation does not have a significant effect
+
+aov6 = aov(distance..cm. ~ speed, data = dat)
+summary(aov6) # p-value of <2e-16
+TukeyHSD(aov6) # all speeds confirmed to have some difference. 
+# reject NULL hypothesis, speed matters!
+
+```
+
+#### Analysis of variance  
+The table below shows significant p-values for speed, time, slope and  substrate. When looking at variables combined there is significant interaction of speed, slope and substrate together. 
+```{r echo=FALSE}
+### modeling
+mod1 = aov(distance_cm ~ speed*time_s*slope*substrate, data = tidy_dat)
+summary(mod1)
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(tidy_dat, aes(distance_cm, time_s, col = speed)) + geom_count() +
+  scale_y_continuous(limits = c(0,22)) + 
+  facet_grid(~substrate) +
+  ggtitle("Different Substrates") + xlab("distance (cm)") + ylab("time (s)") + theme_bw()
+```
+  
+Here we see that substrate grade and speed interact with the pods in a significant way. On sand and small gravel the majority of pods moved a fair distance at all three speeds. On medium gravel at low and medium speed the majority of pods did not move over 100 cm and of those many did not leave the starting point.  
+
+**Subset of sand, distance ~ speed**    
+```{r echo=FALSE}
+
+sand = subset(tidy_dat, substrate == "sand")
+aov7 = aov(distance_cm ~ speed, data = sand)
+summary(aov7)
+```
+**Subset of small gravel, distance ~ speed** 
+```{r echo=FALSE}
+smgravel = subset(tidy_dat, substrate == "sm gravel")
+aov8 = aov(distance_cm ~ speed, data = smgravel)
+summary(aov8)
+```
+**Subset of medium gravel, distance ~ speed**    
+```{r echo=FALSE}
+mdgravel = subset(tidy_dat, substrate == "md gravel")
+aov9 = aov(distance_cm ~ speed, data = mdgravel)
+summary(aov9)
+
+```
+  
+### Conclusion/Acknowledgements
+This investigation aims to fill knowledge gaps in dispersal processes of *Astragalus holmgreniorum*. Findings thus far have shown that substrate, speed of wind, and slope effect movement of these pods. In the right conditions the pods will move a fair distance. For the ones that moved very little or not at all from the starting point; further investigation into why is required. Continued investigation of dimensional measurements will be analyzed to see if there is any correlation of the pod curvature on distance and time.   
+
+Thanks to Dr. Susan Meyer from the US Forest Service for making this experiment possible.
+
+
+
